@@ -1,0 +1,6 @@
+sleep: {{ sleep }}
+bot_api: {{ bot_api }}
+chat_id: {{ chat_id }}
+
+metrics:
+  {{ metrics | to_nice_yaml(indent=2, width=1000) | indent(width=2)}}

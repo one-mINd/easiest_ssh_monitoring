@@ -1,0 +1,20 @@
+---
+galaxy_info:
+  author: Dmitry Razin
+  description: Role for deploy easy ssh monitoring and alerting 
+  company: Personal project
+  role_name: easiest_ssh_monitoring
+  namespace: one_mind
+
+  license: Apache
+
+  min_ansible_version: 4
+
+  platforms:
+    - name: Ubuntu
+      versions:
+        - focal
+
+  galaxy_tags: []
+
+dependencies: []

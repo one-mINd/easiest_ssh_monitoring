@@ -1,0 +1,22 @@
+---
+config_path: /etc/easy_alerts
+
+sleep: 10 # run metrics collector for every 10 seconds
+bot_api: your_api_key # telegram bot api
+chat_id: chat_id # telegram chat id
+
+metrics: # metrics variable is required
+  example: # metric label
+    user: user # user who ssh into target host
+    host: 127.0.0.1 # target host
+    key: key_pass # private rsa key
+    command: ssh_command # command that run in ssh on target host
+    notify_every: 60 # send alerts every 60 second, if one or more filters not passed
+    filters: 
+      - "=10"
+      - "!10"
+      - ">10"
+      - "<10"
+    notify: # notify text
+      header: Your notify header
+      body: Your notify body

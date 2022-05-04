@@ -1,0 +1,41 @@
+---
+- name: Install requirements
+  pip:
+    name: "{{ item }}"
+  with_items:
+    - apprise
+    - mergedeep 
+
+- name: Pass systemd unit to target host
+  template:
+    src: easy_alerts.service.j2
+    dest: "/etc/systemd/system/easy_alerts.service"
+    mode: 540
+    owner: root
+  notify:
+    - reload systemd
+
+- name: Ensure config dir
+  file:
+    path: "{{ config_path }}"
+    state: directory
+    mode: 540
+    owner: root
+
+- name: Pass script file to target host
+  copy:
+    src: AlertsScript.py
+    dest: "{{ config_path }}/AlertsScript.py"
+    mode: 500
+    owner: root
+  notify:
+    - reload monitoring
+
+- name: Pass config file to target host
+  template:
+    src: config.yml.j2
+    dest: "{{ config_path }}/config.yml"
+    mode: 400
+    owner: root
+  notify:
+    - reload monitoring

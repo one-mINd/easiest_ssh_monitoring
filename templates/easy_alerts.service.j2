@@ -1,0 +1,11 @@
+[Unit]
+Description=easy alerts service
+After=multi-user.target
+
+[Service]
+Type=simple
+Restart=always
+ExecStart=/usr/bin/python3 {{ config_path }}/AlertsScript.py --config {{ config_path }}/config.yml
+
+[Install]
+WantedBy=multi-user.target
